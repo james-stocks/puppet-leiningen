@@ -47,13 +47,6 @@ class leiningen (
   $fetch_timeout = $leiningen::params::fetch_timeout,
   $bin_dir       = $leiningen::params::bin_dir,
 ) inherits leiningen::params {
-  include wget
 
-  wget::fetch { "Fetch lein bootstrap":
-    source      => $fetch_url,
-    destination => "${bin_dir}/lein",
-    timeout     => $fetch_timeout,
-    verbose     => false,
-    unless      => "test -f ${bin_dir}/lein"
-  }
+  include leiningen::bootstrap_fetch
 }
