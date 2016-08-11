@@ -35,14 +35,22 @@
 # Authors
 # -------
 #
-# Author Name <author@domain.com>
+# James Stocks <james.stocks@puppet.com>
 #
 # Copyright
 # ---------
 #
-# Copyright 2016 Your name here, unless otherwise noted.
+# Copyright 2016 James Stocks
 #
 class leiningen {
+  include wget
 
-
+  notify{"Fetching lein":}
+  wget::fetch { "Fetch lein bootstrap":
+    source      => 'https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein',
+    destination => '/usr/bin/',
+    timeout     => 300,
+    verbose     => false,
+    unless      => "test -f /usr/bin/lein"
+  }
 }
