@@ -6,6 +6,11 @@ class leiningen::bootstrap_fetch inherits leiningen {
     destination => "${bin_dir}/lein",
     timeout     => $fetch_timeout,
     verbose     => false,
-    unless      => "test -f ${bin_dir}/lein"
+    unless      => "test -f ${bin_dir}/lein",
+    notify    => File["${bin_dir}/lein"],
+  }
+
+  File { "${bin_dir}/lein":
+    mode => "a+x",    
   }
 }
