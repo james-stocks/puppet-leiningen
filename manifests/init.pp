@@ -49,7 +49,6 @@ class leiningen (
 ) inherits leiningen::params {
   include wget
 
-  notify{"Fetching lein":}
   wget::fetch { "Fetch lein bootstrap":
     source      => $fetch_url,
     destination => "${bin_dir}/lein",
