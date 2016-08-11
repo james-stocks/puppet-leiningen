@@ -42,15 +42,19 @@
 #
 # Copyright 2016 James Stocks
 #
-class leiningen {
+class leiningen (
+  $fetch_url     = $leiningen::params::fetch_url,
+  $fetch_timeout = $leiningen::params::fetch_timeout,
+  $bin_dir       = $leiningen::params::bin_dir,
+) inherits leiningen::params {
   include wget
 
   notify{"Fetching lein":}
   wget::fetch { "Fetch lein bootstrap":
-    source      => 'https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein',
-    destination => '/usr/bin/',
-    timeout     => 300,
+    source      => $fetch_url,
+    destination => "${bin_dir}/lein",
+    timeout     => $fetch_timeout,
     verbose     => false,
-    unless      => "test -f /usr/bin/lein"
+    unless      => "test -f ${bin_dir}/lein"
   }
 }
