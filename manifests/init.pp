@@ -1,36 +1,28 @@
 # Class: leiningen
 # ===========================
 #
-# Full description of class leiningen here.
+# Download leiningen (http://leiningen.org/) to your bin directory and makes it executable.
 #
 # Parameters
 # ----------
 #
-# Document parameters here.
-#
-# * `sample parameter`
-# Explanation of what this parameter affects and what it defaults to.
-# e.g. "Specify one or more upstream ntp servers as an array."
-#
-# Variables
-# ----------
-#
-# Here you should define a list of variables that this module would require.
-#
-# * `sample variable`
-#  Explanation of how this variable affects the function of this class and if
-#  it has a default. e.g. "The parameter enc_ntp_servers must be set by the
-#  External Node Classifier as a comma separated list of hostnames." (Note,
-#  global variables should be avoided in favor of class parameters as
-#  of Puppet 2.6.)
+# * `fetch_url`
+#   The URL to find the the leiningen bootstrap script at.
+#   Default is https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein
+# * `fetch_timeout`
+#   How long to allow fetching of the bootstrap script before failing.
+#   Default is 300 seconds
+# * `bin_dir`
+#   The directory lein should be placed.
+#   Default is /usr/bin
 #
 # Examples
 # --------
 #
 # @example
-#    class { 'leiningen':
-#      servers => [ 'pool.ntp.org', 'ntp.local.company.com' ],
-#    }
+#   node default {
+#     include leiningen
+#   }
 #
 # Authors
 # -------
