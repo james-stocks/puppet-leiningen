@@ -10,7 +10,7 @@ class leiningen::bootstrap_fetch inherits leiningen {
     notify      => File['lein bootstrap file'],
   }
 
-  File { 'lein bootstrap file':
+  file { 'lein bootstrap file':
     path => "${leiningen::bin_dir}/lein",
     mode => 'a+x',
   }
